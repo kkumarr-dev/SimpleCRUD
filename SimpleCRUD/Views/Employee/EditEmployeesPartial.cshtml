@@ -1,0 +1,74 @@
+﻿@model SimpleCRUD.DTO.EmployeeDTO
+
+<div class="modal-header">
+    <h4 class="modal-title">Modal Heading</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <form>
+                <div class="form-group">
+                    <label>FirstName</label>
+                    <input type="text" name="FirstName" id="firstName" value="@Model.FirstName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>LastName</label>
+                    <input type="text" name="LastName" id="LastName" value="@Model.LastName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>PhoneNumber</label>
+                    <input type="number" name="PhoneNumber" id="PhoneNumber" value="@Model.PhoneNumber" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Date Of Birth</label>
+                    <input type="date" name="Dob" id="dob" value="@Model.Dob.ToString("yyyy-MM-dd")" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>AddressLine1</label>
+                    <textarea name="AddressLine1" id="AddressLine1" class="form-control">@Model.AddressLine1</textarea>
+                </div>
+                <div class="form-group">
+                    <label>AddressLine2</label>
+                    <textarea name="AddressLine2" id="AddressLine2" class="form-control">@Model.AddressLine2</textarea>
+                </div>
+                <div class="form-group">
+                    <label>State</label>
+                    <input type="text" name="State" id="State" value="@Model.State" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>District</label>
+                    <input type="text" name="District" id="District" value="@Model.District" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>PinCode</label>
+                    <input type="number" name="PinCode" id="PinCode" value="@Model.PinCode" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Date of Joining</label>
+                    <input type="date" name="Doj" id="Doj" value="@Model.Doj.ToString("yyyy-MM-dd")" class="form-control" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" data-dismiss="modal" onclick="UpdateData()">Submit</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+</div>
+<script>
+    $(document).ready(function () {
+    })
+    function UpdateData() {
+        debugger;
+        var modeldata = {
+            UserId:@(Model.UserId)
+        };
+        var inputs = $('form').serializeArray();
+        $(inputs).each(function (i, o) {
+            debugger;
+            modeldata[o.name] = o.value;
+        })
+        SendData(modeldata, '/Employee/AddEmployee')
+    }
+</script>

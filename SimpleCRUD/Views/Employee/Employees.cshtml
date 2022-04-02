@@ -1,0 +1,34 @@
+﻿@model List<SimpleCRUD.DTO.EmployeeDTO>
+<div class="container">
+    <div class="row">
+        <button class="btn btn-outline-info" onclick="OpenModal('/Employee/Create')">Add</button>
+        <table class="table table-responsive">
+            <tr>
+                <th>Employee ID</th>
+                <th>EmployeeName</th>
+                <th>Employee PhoneNumber</th>
+                <th>Employee Address</th>
+                <th>Date Of Birth</th>
+                <th>Date Of Joining</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@($"EMP{item.EmployeeId}")</td>
+                    <td>@(item.FirstName) @(item.LastName)</td>
+                    <td>@(item.PhoneNumber)</td>
+                    <td>
+                        @($"{item.AddressLine1} {item.AddressLine2}, {item.State}, {item.District} {item.PinCode}")
+                    </td>
+                    <td>@(item.Dob.ToString("dd MMM yyyy"))</td>
+                    <td>@(item.Doj.ToString("dd MMM yyyy"))</td>
+                    <td>
+                        <a href="#" onclick="OpenModal('/Employee/Edit?userid=@item.UserId')">Edit</a>
+                        <a href="#" onclick="SendData('','/Employee/Delete?userid=@item.UserId')">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
